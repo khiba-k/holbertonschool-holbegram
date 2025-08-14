@@ -31,15 +31,24 @@ class TextFieldInput extends StatelessWidget {
         contentPadding: const EdgeInsets.all(8),
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: const BorderSide(
+            color: Colors.transparent,
+            style: BorderStyle.none,
+          ),
           borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: const BorderSide(
+            color: Colors.transparent,
+            style: BorderStyle.none,
+          ),
           borderRadius: BorderRadius.circular(8),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: const BorderSide(
+            color: Colors.transparent,
+            style: BorderStyle.none,
+          ),
           borderRadius: BorderRadius.circular(8),
         ),
       ),
