@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../widgets/text_field.dart';
-import './login_screen.dart';
-// import './upload_image_screen.dart';
+import '../../../widgets/text_field.dart';
+import 'login_screen.dart';
+import './upload_image_screen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -115,16 +115,16 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => AddPicture(
-                    //       email: emailController.text.trim(),
-                    //       username: usernameController.text.trim(),
-                    //       password: passwordController.text.trim(),
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddPicture(
+                          email: emailController.text.trim(),
+                          username: usernameController.text.trim(),
+                          password: passwordController.text.trim(),
+                        ),
+                      ),
+                    );
                   },
                   child: const Text(
                     'Sign up',
