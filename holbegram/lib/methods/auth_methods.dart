@@ -70,4 +70,15 @@ class AuthMethods {
     }
     return res;
   }
+
+  Future<User> getUserDetails() async {
+      auth.User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot documentSnapshot = await _firestore
+      .collection('users')
+      .doc(currentUser.uid)
+      .get();
+
+    return User.fromSnap(documentSnapshot);
+  }
 }
