@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:holbegram/screens/auth/signup_screen.dart';
-import 'package:provider/provider.dart';
-import '../providers/user_provider.dart';
+import './signup_screen.dart';
+// import 'package:provider/provider.dart';
+// import '../providers/user_provider.dart';
 import '../widgets/text_field.dart';
-import 'package:holbegram/methods/auth_methods.dart';
+// import 'package:holbegram/methods/auth_methods.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -87,26 +87,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onPressed: () async {
-                        String res = await AuthMethode().login(
-                          email: emailController.text.trim(),
-                          password: passwordController.text.trim(),
-                        );
-                        if (context.mounted) {
-                          if (res == 'success') {
-                            await Provider.of<UserProvider>(
-                              context,
-                              listen: false,
-                            ).refreshUser();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Login successful')),
-                            );
-                            Navigator.pushReplacementNamed(context, '/home');
-                          } else {
-                            ScaffoldMessenger.of(
-                              context,
-                            ).showSnackBar(SnackBar(content: Text(res)));
-                          }
-                        }
+                        // String res = await AuthMethode().login(
+                        //   email: emailController.text.trim(),
+                        //   password: passwordController.text.trim(),
+                        // );
+                        // if (context.mounted) {
+                        //   if (res == 'success') {
+                        //     await Provider.of<UserProvider>(
+                        //       context,
+                        //       listen: false,
+                        //     ).refreshUser();
+                        //     ScaffoldMessenger.of(context).showSnackBar(
+                        //       const SnackBar(content: Text('Login successful')),
+                        //     );
+                        //     Navigator.pushReplacementNamed(context, '/home');
+                        //   } else {
+                        //     ScaffoldMessenger.of(
+                        //       context,
+                        //     ).showSnackBar(SnackBar(content: Text(res)));
+                        //   }
+                        // }
                       },
                       child: const Text(
                         'Log in',
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignUpScreen(),
+                                builder: (context) => SignUp(),
                               ),
                             );
                           },
