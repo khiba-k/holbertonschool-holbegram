@@ -43,6 +43,7 @@ dependencies:
   uuid: ^4.4.0
   http: ^1.2.2
   image_picker: ^1.1.1
+  bottom_navy_bar: ^6.0.0
 
 dev_dependencies:
   flutter_test:
