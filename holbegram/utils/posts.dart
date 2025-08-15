@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:holbegram/providers/user_provider.dart';
+import 'package:holbegram/screens/pages/methods/post_storage.dart';
 import 'package:provider/provider.dart';
 
 class Posts extends StatefulWidget {

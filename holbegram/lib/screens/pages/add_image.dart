@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:holbegram/models/user.dart';
 import 'package:holbegram/providers/user_provider.dart';
-import 'package:holbegram/screens/Pages/methods/post_storage.dart';
 import 'package:holbegram/screens/home.dart';
+import 'package:holbegram/screens/pages/methods/post_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'dart:typed_data';
