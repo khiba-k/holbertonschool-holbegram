@@ -103,9 +103,12 @@ class _AddImageState extends State<AddImage> {
   }
 
   void postImage() async {
+    print("postImage called");
     final User? user = Provider.of<UserProvider>(context, listen: false).user;
+    print("User: $user");
 
     if (_file == null) {
+      print("No File");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please select an image first'),
         backgroundColor: Colors.red,
@@ -115,6 +118,7 @@ class _AddImageState extends State<AddImage> {
     }
 
   if (user == null) {
+    print("No User");
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('User not logged in'),
@@ -129,6 +133,7 @@ class _AddImageState extends State<AddImage> {
   });
 
   try {
+    print("Trying to post image");
     String result = await PostStorage().uploadPost(
       _captionController.text, 
       user.uid, 
@@ -136,6 +141,8 @@ class _AddImageState extends State<AddImage> {
       user.photoUrl, 
       _file!
     );
+
+    print("Post Result: $result");
 
     if (result == "Ok") {
       ScaffoldMessenger.of(context).showSnackBar(

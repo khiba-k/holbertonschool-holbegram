@@ -39,18 +39,21 @@ class User {
   };
 
   static User fromSnap(DocumentSnapshot snap) {
-    var snapshot = snap.data() as Map<String, dynamic>;
+    var snapshot = snap.data() as Map<String, dynamic>? ?? {};
+
+    print("User snapshot data: $snapshot");
+
     return User(
-      uid: snapshot['uid'] as String,
-      email: snapshot['email'] as String,
-      username: snapshot['username'] as String,
-      bio: snapshot['bio'] as String,
-      photoUrl: snapshot['photoUrl'] as String,
-      followers: snapshot['followers'] as List,
-      following: snapshot['following'] as List,
-      posts: snapshot['posts'] as List,
-      saved: snapshot['saved'] as List,
-      searchKey: snapshot['searchKey'] as String,
+      uid: snapshot['uid'] ?? '',
+      email: snapshot['email'] ?? '',
+      username: snapshot['username'] ?? '',
+      bio: snapshot['bio'] ?? '',
+      photoUrl: snapshot['photoUrl'] ?? '',
+      followers: snapshot['followers'] ?? [],
+      following: snapshot['following'] ?? [],
+      posts: snapshot['posts'] ?? [],
+      saved: snapshot['saved'] ?? [],
+      searchKey: snapshot['searchKey'] ?? '',
     );
   }
 }

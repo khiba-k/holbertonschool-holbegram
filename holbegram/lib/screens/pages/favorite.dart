@@ -12,7 +12,7 @@ class Favorite extends StatelessWidget {
     final User? user = Provider.of<UserProvider>(context).user;
 
     if (user == null) {
-      return const Center(child: Text("Utilisateur non connecté"));
+      return const Center(child: Text("User not logged in"));
     }
 
     return Scaffold(
@@ -36,11 +36,12 @@ class Favorite extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return const Center(child: Text("Erreur de chargement"));
+            print("Snapshot Error: ${snapshot.error}");
+            return const Center(child: Text("Error loading favorites"));
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text("Aucun favori pour le moment"));
+            return const Center(child: Text("No favorites yet"));
           }
 
           final favorites = snapshot.data!.docs;
@@ -48,8 +49,9 @@ class Favorite extends StatelessWidget {
           return ListView.builder(
             itemCount: favorites.length,
             itemBuilder: (context, index) {
-              final data = favorites[index].data();
-              final imageUrl = data['postUrl'];
+              final Map<String, dynamic> data =
+                  favorites[index].data() as Map<String, dynamic>;
+              final imageUrl = data['postUrl'] ?? '';
 
               return Container(
                 margin: const EdgeInsets.all(12),

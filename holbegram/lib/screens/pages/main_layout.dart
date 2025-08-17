@@ -1,44 +1,68 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:holbegram/screens/pages/favorite.dart';
+import 'package:holbegram/screens/pages/search.dart';
+import 'package:holbegram/screens/pages/feed.dart';
+import 'package:holbegram/screens/pages/add_image.dart';
+import 'package:holbegram/screens/pages/profile_screen.dart';
 
-class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+class MainLayout extends StatefulWidget {
+  final int initialIndex;
+  
+  const MainLayout({super.key, this.initialIndex = 0});
 
   @override
-  State<BottomNav> createState() => _BottomNavState();
+  State<MainLayout> createState() => _MainLayoutState();
 }
 
-class _BottomNavState extends State<BottomNav> {
-  int _currentIndex = 0;
+class _MainLayoutState extends State<MainLayout> {
+  late int _currentIndex;
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+    _pageController = PageController(initialPage: widget.initialIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   void onItemSelected(int index) {
     setState(() {
       _currentIndex = index;
     });
-
-    // Navigate to different routes based on selected index
-    switch (index) {
-      case 0:
-        Navigator.of(context).pushReplacementNamed('/feed');
-        break;
-      case 1:
-        Navigator.of(context).pushReplacementNamed('/search');
-        break;
-      case 2:
-        Navigator.of(context).pushReplacementNamed('/add');
-        break;
-      case 3:
-        Navigator.of(context).pushReplacementNamed('/favorite');
-        break;
-      case 4:
-        Navigator.of(context).pushReplacementNamed('/profile');
-        break;
-    }
+    _pageController.animateToPage(
+      index,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: onPageChanged,
+        children: const [
+          Feed(),
+          Search(),
+          AddImage(),
+          Favorite(),
+          ProfileScreen(),
+        ],
+      ),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
         showElevation: true,
